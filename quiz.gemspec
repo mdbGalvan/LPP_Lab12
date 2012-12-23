@@ -21,4 +21,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'guard-rspec'
   gem.add_development_dependency 'rb-readline'
+  gem.add_development_dependency 'Rdoc'
 end

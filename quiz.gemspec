@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["magomenlopark@gmail.com"]
   gem.description   = %q{Redacción de Cuestionarios I (Sin Contexto)}
   gem.summary       = %q{Redacta cuestionarios de seleccion multiple}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/mdbGalvan/Lab_12"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
@@ -20,6 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'guard-rspec'
+  gem.add_development_dependency 'guard'
+  gem.add_development_dependency 'rdoc'
   gem.add_development_dependency 'rb-readline'
-  gem.add_development_dependency 'Rdoc'
 end

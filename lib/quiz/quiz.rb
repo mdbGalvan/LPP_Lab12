@@ -4,93 +4,141 @@ require 'erb'
 
 module Quiz
 
-	# Debe definir una clase Quiz que soporte un pequeño lenguaje 
-	# en el que las preguntas puedan ser especificadas.
-	# Puede que le interese crear tres clases, una tercera para el cuestionario (Quiz)
-	class Quiz
+	module_function
 
-		# El constructor de Quiz va seguido de un bloque al que le
-		# pasa como argumento el objeto e que representa al examen
-		# quiz = Quiz.new("Cuestionario de PFS 10/12/2011") do |e| ... end
-		def initialize(title)
-			raise ArgumentError unless title.is_a? String
-			@counter = 0
-			@questioning = []
-			@title = title
+	WRONG = false
+	RIGHT = true
 
-			yield self
+		# Debe definir una clase Quiz que soporte un pequeño lenguaje 
+		# en el que las preguntas puedan ser especificadas.
+		# Puede que le interese crear tres clases, una tercera para el cuestionario (Quiz)
+		class Quiz
+
+			attr_accessor :name, :questions
+
+			# El constructor de Quiz va seguido de un bloque al que le
+			# pasa como argumento el objeto e que representa al examen
+			# quiz = Quiz.new("Cuestionario de PFS 10/12/2011") do |e| ... end
+			def initialize(name)
+				raise ArgumentError unless name.is_a? String
+				@counter = 0
+				@questions = []
+				@name = name
+				@aciertos = 0
+
+				yield self
+			end
+
+			# Los cuestionarios deberían tener un método to_s 
+			# que devuelve un String conteniendo el examen en texto plano.
+			# Devuelve el título, y llama a imprimir las preguntas
+			def to_s
+				out = "\t #{self.name} \n"
+				questions.each do |q|
+					out << " #{q}\n"
+				end
+				out
+			end
+
+			# Los cuestionarios deberían tener un método run que formulará cada 
+			# una de las preguntas del cuestionario y mostrara el porcentaje de aciertos
+			def run
+				puts "\t #{self.name} \n"
+				questions.each do |q|
+					puts q
+					print "Su respuesta: "
+					resp = gets.chomp.to_i
+					raise IndexError unless resp > 0 and resp <= q.answer.size
+					if q.answer[resp-1].state
+						puts "Correcto!"
+						@aciertos += 1
+					else
+						correcta = q.answer.select { |ans| ans.state }.first
+						puts "Fallo, la respuesta correcta era #{correcta}"
+					end
+					puts
+				end
+				puts "Has acertado el #{(@aciertos/questions.size.to_f)*100}% de las preguntas [#{@aciertos} de #{questions.size}]."
+			end
+
+			# El método question recibe dos argumentos
+			# El primero es el título del examen, el segundo es un hash
+			# Si el segundo argumento de question es un hash y las claves son :wrong y :right 
+			# se va a producir una colisión y el último valor sobreescribirá a los anteriores. 
+			def question (title, anss)
+				answers = []
+
+				anss.each do |ans|
+					a = Answer.new(ans)
+					answers << a
+				end
+
+				q = Question.new(title, answers)
+				questions << q
+			end
+
+			# Una posible forma de hacerlo es que los métodos wrong y right diferencien las 
+			# ocurrencias de las repsuestas usando un contador @counter
+			def wrong
+				@counter += 1
+				[@counter, WRONG]
+			end
+
+			def right
+				:right
+			end
 		end
 
-		# Los cuestionarios deberían tener un método to_s 
-		# que devuelve un String conteniendo el examen en texto plano.
-		def to_s
+		# Puede que le interese crear tres clases, una para modelar las respuestas (Answer)
+		class Answer 
+
+			attr_reader :state, :value
+
+			def initialize(ans)
+				raise ArgumentError unless ans.is_a? Array
+				raise IndexError unless ans.size == 2
+				state = ans[0]
+				value = ans[1]
+				state == :right ? @state = RIGHT : @state = WRONG
+				@value = value
+			end
+
+			# Los cuestionarios deberían tener un método to_s 
+			# que devuelve un String conteniendo el examen en texto plano.
+			# Devuelve el resultado es estado del resultado
+			def to_s
+				"#{@value}"
+			end
 
 		end
 
-		# Los cuestionarios deberían tener un método run que formulará cada 
-		# una de las preguntas del cuestionario y mostrara el porcentaje de aciertos
-		def run
-			puts "#{self.title} \n"
-			self.questioning.each do |q|
-				puts q
-				ans = gets.chomp.to_i
-				raise IndexError unless ans > 0 and ans <= q.size
+		# Puede que le interese crear tres clases, otra para modelar las preguntas (Question)
+		class Question
 
-			end 
+			attr_accessor :answer, :title
 
+			def initialize(title, answer)
+				@title = title
+				@answer = answer
+			end
 
+			# Los cuestionarios deberían tener un método to_s 
+			# que devuelve un String conteniendo el examen en texto plano.
+			# Devuelve cada pregunta y sus opciones
+			def to_s
+				out = "#{@title}" + "\n"
+                i = 1
+                answer.each do |a|
+                    out << "   [#{i}] #{a}\n"
+                    i += 1
+                end
+                out
+			end
+
+			def size
+				@answer.size
+			end
 
 		end
 
-		# El método question recibe dos argumentos
-		# El primero es el título del examen, el segundo es un hash
-		# Si el segundo argumento de question es un hash y las claves son :wrong y :right 
-		# se va a producir una colisión y el último valor sobreescribirá a los anteriores. 
-		def question (title, hash)
-
-		end
-
-		# Una posible forma de hacerlo es que los métodos wrong y right diferencien las 
-		# ocurrencias de las repsuestas usando un contador @counter
-		def wrong
-			@counter += 1
-			[@counter, WRONG]
-		end
-	end
-
-	# Puede que le interese crear tres clases, una para modelar las respuestas (Answer)
-	#class Answer 
-
-		#def initialize()
-
-		#end
-
-		#def to_s
-
-		#end
-
-	#end
-
-	# Puede que le interese crear tres clases, otra para modelar las preguntas (Question)
-	class Question
-
-		def initialize(title, answer)
-			@title = title
-			@answer = answer
-		end
-
-		def to_s
-			puts "#{self.title} \n"
-			i = 1
-			self.answer.each do |ans|
-				puts "#{i} - #{ans} \n"
-				i += 1
-			end 
-		end
-
-		def size
-			@answer.size
-		end
-
-	end
 end

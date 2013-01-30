@@ -98,12 +98,12 @@ module Quiz
 					fout.puts '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'
 					fout.puts '<title>Cuestionario</title>'
 					fout.puts '</head>'
-					fout.puts '<body>'
+					fout.puts '<body bgcolor="666666" text="FFFFFF">'
 
 					fout.puts '<form name="myform" action="http://proyecto.bonoqr.comze.com/" method="POST">'
 					fout.puts '<div align="left"><br>'
 
-					fout.puts '<h2>' + "#{self.name}" + '</h2>'
+					fout.puts "<center><h1> #{self.name} </h1></center>"
 					questions.each do |q|
 						fout.puts " #{q.to_html}\n"
 					end
@@ -168,10 +168,10 @@ module Quiz
 			end
 
 			def to_html
-				out = "<p><b>#{@title}</b></br>\n"
+				out = "<p><h3>#{@title}</h3></p>\n"
                 i = 1
                 answer.each do |a|
-                	out << "\t" + '<input type="radio" name="' + "#{@title}" + '" value="' + "#{a}" + '">' + "   [#{i}] #{a}" + '<br>' + "\n"
+                	out << "\t<p>" + '<input type="radio" name="' + "#{@title}" + '" value="' + "#{a}" + '">' + "   [#{i}] #{a}" + "</p>\n"
                     i += 1
                 end
 

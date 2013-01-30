@@ -26,6 +26,6 @@ if __FILE__ == $0
         e.wrong => "RubyGemas"
 	end
 
-	quiz.run
+	quiz.to_html
 
 end

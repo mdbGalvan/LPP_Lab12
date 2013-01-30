@@ -87,6 +87,38 @@ module Quiz
 			def right
 				:right
 			end
+
+			def to_html
+				# Crea un nuevo fichero, y escribe
+				File.open('index.html', 'w') do |fout|
+
+					fout.puts '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'
+					fout.puts '<html xmlns="http://www.w3.org/1999/xhtml">'
+					fout.puts '<head>'
+					fout.puts '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'
+					fout.puts '<title>Cuestionario</title>'
+					fout.puts '</head>'
+					fout.puts '<body>'
+
+					fout.puts '<form name="myform" action="http://proyecto.bonoqr.comze.com/" method="POST">'
+					fout.puts '<div align="left"><br>'
+
+					fout.puts '<h2>' + "#{self.name}" + '</h2>'
+					questions.each do |q|
+						fout.puts " #{q.to_html}\n"
+					end
+
+					fout.puts "Has acertado el #{(@aciertos/questions.size.to_f)*100}% de las preguntas [#{@aciertos} de #{questions.size}]."
+
+					fout.puts '</div>'
+					fout.puts '</form>'
+
+					fout.puts '</body>'
+					fout.puts '</html>'
+
+				
+				end
+			end
 		end
 
 		# Puede que le interese crear tres clases, una para modelar las respuestas (Answer)
@@ -129,9 +161,21 @@ module Quiz
 				out = "#{@title}" + "\n"
                 i = 1
                 answer.each do |a|
-                    out << "   [#{i}] #{a}\n"
+                    out << "  [#{i}] #{a}\n"
                     i += 1
                 end
+                out
+			end
+
+			def to_html
+				out = "<p><b>#{@title}</b></br>\n"
+                i = 1
+                answer.each do |a|
+                	out << "\t" + '<input type="radio" name="' + "#{@title}" + '" value="' + "#{a}" + '">' + "   [#{i}] #{a}" + '<br>' + "\n"
+                    i += 1
+                end
+
+                out << '<hr>'
                 out
 			end
 

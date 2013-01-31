@@ -78,7 +78,7 @@ module Quiz
 			end
 
 			# Una posible forma de hacerlo es que los métodos wrong y right diferencien las 
-			# ocurrencias de las repsuestas usando un contador @counter
+			# ocurrencias de las respuestas usando un contador @counter
 			def wrong
 				@counter += 1
 				[@counter, WRONG]
@@ -90,7 +90,7 @@ module Quiz
 
 			def to_html
 				# Crea un nuevo fichero, y escribe
-				File.open('index.html', 'w') do |fout|
+				File.open('html/index.html', 'w') do |fout|
 
 					fout.puts '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'
 					fout.puts '<html xmlns="http://www.w3.org/1999/xhtml">'

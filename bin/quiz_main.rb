@@ -24,6 +24,12 @@ if __FILE__ == $0
         e.wrong => "Repository Gem",
         e.right => "Rubygems",
         e.wrong => "RubyGemas"
+
+        e.question "Enunciado",
+        e.wrong => "respuesta1",
+        e.right => "respuesta2",
+        e.wrong => "respuesta3",
+        e.wrong => "respuesta4"
 	end
 
 	quiz.to_html

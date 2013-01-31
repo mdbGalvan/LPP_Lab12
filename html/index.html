@@ -1,38 +1,40 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Cuestionario</title>
+	<link href="css.css" rel="stylesheet" type="text/css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Cuestionario</title>
 </head>
-<body bgcolor="666666" text="FFFFFF">
-<form name="myform" action="http://proyecto.bonoqr.comze.com/" method="POST">
-<div align="left"><br>
-<center><h1> Gemas </h1></center>
- <p><h3>¿Qué comando permite manipular gemas?</h3></p>
-	<p><input type="radio" name="¿Qué comando permite manipular gemas?" value="bundler">   [1] bundler</p>
-	<p><input type="radio" name="¿Qué comando permite manipular gemas?" value="gem">   [2] gem</p>
-	<p><input type="radio" name="¿Qué comando permite manipular gemas?" value="Rubygems">   [3] Rubygems</p>
-	<p><input type="radio" name="¿Qué comando permite manipular gemas?" value="gem install">   [4] gem install</p>
-<hr>
- <p><h3>¿Cómo se puede encontrar la gema, mygem, en la máquina local?</h3></p>
-	<p><input type="radio" name="¿Cómo se puede encontrar la gema, mygem, en la máquina local?" value="gem search mygem --b">   [1] gem search mygem --b</p>
-	<p><input type="radio" name="¿Cómo se puede encontrar la gema, mygem, en la máquina local?" value="gem search mygem --l">   [2] gem search mygem --l</p>
-	<p><input type="radio" name="¿Cómo se puede encontrar la gema, mygem, en la máquina local?" value="gem search mygem -remote">   [3] gem search mygem -remote</p>
-	<p><input type="radio" name="¿Cómo se puede encontrar la gema, mygem, en la máquina local?" value="gem search mygem -local">   [4] gem search mygem -local</p>
-<hr>
- <p><h3>¿Cómo se denomina el repositorio estándar de gemas?</h3></p>
-	<p><input type="radio" name="¿Cómo se denomina el repositorio estándar de gemas?" value="/etc/gem/">   [1] /etc/gem/</p>
-	<p><input type="radio" name="¿Cómo se denomina el repositorio estándar de gemas?" value="Repository Gem">   [2] Repository Gem</p>
-	<p><input type="radio" name="¿Cómo se denomina el repositorio estándar de gemas?" value="Rubygems">   [3] Rubygems</p>
-	<p><input type="radio" name="¿Cómo se denomina el repositorio estándar de gemas?" value="RubyGemas">   [4] RubyGemas</p>
-<hr>
- <p><h3>Enunciado</h3></p>
-	<p><input type="radio" name="Enunciado" value="respuesta1">   [1] respuesta1</p>
-	<p><input type="radio" name="Enunciado" value="respuesta2">   [2] respuesta2</p>
-	<p><input type="radio" name="Enunciado" value="respuesta3">   [3] respuesta3</p>
-	<p><input type="radio" name="Enunciado" value="respuesta4">   [4] respuesta4</p>
-<hr>
-Has acertado el 0.0% de las preguntas [0 de 4].
+<body>
+	<form name="myform" action="http://proyecto.bonoqr.comze.com/" method="POST">
+		<div id="quiz"><br>
+			<center><h1> Gemas </h1></center>
+ 			<p><h3>¿Qué comando permite manipular gemas?</h3></p>
+				<p><input type="radio" name="¿Qué comando permite manipular gemas?" value="bundler">   [1] bundler</p>
+				<p><input type="radio" name="¿Qué comando permite manipular gemas?" value="gem">   [2] gem</p>
+				<p><input type="radio" name="¿Qué comando permite manipular gemas?" value="Rubygems">   [3] Rubygems</p>
+				<p><input type="radio" name="¿Qué comando permite manipular gemas?" value="gem install">   [4] gem install</p>
+
+ 			<p><h3>¿Cómo se puede encontrar la gema, mygem, en la máquina local?</h3></p>
+				<p><input type="radio" name="¿Cómo se puede encontrar la gema, mygem, en la máquina local?" value="gem search mygem --b">   [1] gem search mygem --b</p>
+				<p><input type="radio" name="¿Cómo se puede encontrar la gema, mygem, en la máquina local?" value="gem search mygem --l">   [2] gem search mygem --l</p>
+				<p><input type="radio" name="¿Cómo se puede encontrar la gema, mygem, en la máquina local?" value="gem search mygem -remote">   [3] gem search mygem -remote</p>
+				<p><input type="radio" name="¿Cómo se puede encontrar la gema, mygem, en la máquina local?" value="gem search mygem -local">   [4] gem search mygem -local</p>
+
+ 			<p><h3>¿Cómo se denomina el repositorio estándar de gemas?</h3></p>
+				<p><input type="radio" name="¿Cómo se denomina el repositorio estándar de gemas?" value="/etc/gem/">   [1] /etc/gem/</p>
+				<p><input type="radio" name="¿Cómo se denomina el repositorio estándar de gemas?" value="Repository Gem">   [2] Repository Gem</p>
+				<p><input type="radio" name="¿Cómo se denomina el repositorio estándar de gemas?" value="Rubygems">   [3] Rubygems</p>
+				<p><input type="radio" name="¿Cómo se denomina el repositorio estándar de gemas?" value="RubyGemas">   [4] RubyGemas</p>
+
+ 			<p><h3>Enunciado</h3></p>
+				<p><input type="radio" name="Enunciado" value="respuesta1">   [1] respuesta1</p>
+				<p><input type="radio" name="Enunciado" value="respuesta2">   [2] respuesta2</p>
+				<p><input type="radio" name="Enunciado" value="respuesta3">   [3] respuesta3</p>
+				<p><input type="radio" name="Enunciado" value="respuesta4">   [4] respuesta4</p>
+
+			<hr>
+			Has acertado el 0.0% de las preguntas [0 de 4].
 </div>
 </form>
 </body>

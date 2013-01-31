@@ -95,20 +95,22 @@ module Quiz
 					fout.puts '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'
 					fout.puts '<html xmlns="http://www.w3.org/1999/xhtml">'
 					fout.puts '<head>'
-					fout.puts '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'
-					fout.puts '<title>Cuestionario</title>'
+					fout.puts "\t" + '<link href="css.css" rel="stylesheet" type="text/css" />'
+					fout.puts "\t" + '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'
+					fout.puts "\t" + '<title>Cuestionario</title>'
 					fout.puts '</head>'
-					fout.puts '<body bgcolor="666666" text="FFFFFF">'
+					fout.puts '<body>'
 
-					fout.puts '<form name="myform" action="http://proyecto.bonoqr.comze.com/" method="POST">'
-					fout.puts '<div align="left"><br>'
+					fout.puts "\t" + '<form name="myform" action="http://proyecto.bonoqr.comze.com/" method="POST">'
+					fout.puts "\t\t" + '<div id="quiz"><br>'
 
-					fout.puts "<center><h1> #{self.name} </h1></center>"
+					fout.puts "\t\t\t<center><h1> #{self.name} </h1></center>"
 					questions.each do |q|
 						fout.puts " #{q.to_html}\n"
 					end
 
-					fout.puts "Has acertado el #{(@aciertos/questions.size.to_f)*100}% de las preguntas [#{@aciertos} de #{questions.size}]."
+					fout.puts "\t\t\t<hr>"
+					fout.puts "\t\t\tHas acertado el #{(@aciertos/questions.size.to_f)*100}% de las preguntas [#{@aciertos} de #{questions.size}]."
 
 					fout.puts '</div>'
 					fout.puts '</form>'
@@ -168,14 +170,12 @@ module Quiz
 			end
 
 			def to_html
-				out = "<p><h3>#{@title}</h3></p>\n"
+				out = "\t\t\t<p><h3>#{@title}</h3></p>\n"
                 i = 1
                 answer.each do |a|
-                	out << "\t<p>" + '<input type="radio" name="' + "#{@title}" + '" value="' + "#{a}" + '">' + "   [#{i}] #{a}" + "</p>\n"
+                	out << "\t\t\t\t<p>" + '<input type="radio" name="' + "#{@title}" + '" value="' + "#{a}" + '">' + "   [#{i}] #{a}" + "</p>\n"
                     i += 1
                 end
-
-                out << '<hr>'
                 out
 			end
 

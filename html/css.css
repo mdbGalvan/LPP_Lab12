@@ -1,0 +1,23 @@
+body {
+	background: #b6b6b6;
+}
+
+#quiz{
+	background-color: #d8d8d8;
+	width: 700px;
+	border: 1px solid white;
+	margin: 40px auto;
+	padding: 1em;
+	border-radius: 6px;
+}
+
+h1, h2, h3, h4 {
+	font-family: arial;
+	color: #0080ff;
+	margin-left: 10px;
+}
+
+p {
+	font-size: 18px;
+	margin-left: 30px;
+}
